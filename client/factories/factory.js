@@ -4,7 +4,7 @@ console.log("loading factory");
 // userFactory
 app.factory('userFactory', ['$http', function($http){
 	return (function($http){
-		var logged_user = {};
+		var logged_user = "loggedout_user";
 		function userFactory(){
 			this.getUser = function(callback){
 				callback(logged_user);
@@ -27,7 +27,7 @@ app.factory('userFactory', ['$http', function($http){
 				});
 			};
 			this.logout = function(callback){
-				logged_user = {};
+				logged_user = "loggedout_user";
 				console.log('loging out from factory');
 				callback(logged_user);
 			};
@@ -102,9 +102,6 @@ app.factory('answerFactory', ['$http', function($http){
 							callback(data.data);
 						}
 					});
-					// if (typeof(callback) === 'function'){
-					// 	callback(data.data);
-					// }
 				});
 			};
 		}

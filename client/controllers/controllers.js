@@ -10,7 +10,7 @@ app.controller('LoginController', ['$scope', 'userFactory', '$location', functio
 		userFactory.create(new_user, function(data){
 			console.log("data recieved from factory from server ", data);
 			// if errors?
-			if (!data._id){
+			if (data.errors){
 				// supposendly errors - on html loop through arrayt to display??
 				if (data.errors){
 					$scope.errors = data.errors.name.message;
@@ -20,7 +20,7 @@ app.controller('LoginController', ['$scope', 'userFactory', '$location', functio
 				}
 			} 
 
-			// else {
+			else {
 				// save user name and relocate
 
 				// to stay on the same controller
@@ -37,7 +37,7 @@ app.controller('LoginController', ['$scope', 'userFactory', '$location', functio
 				}
 				// to dashboard
 				$location.path('/');
-			// }
+			}
 	
 		});
 	};
@@ -49,14 +49,20 @@ app.controller('QestionsController', ['$scope', 'userFactory', 'questionFactory'
 	$scope.questions = [];
 	userFactory.getUser(function(data){
 		$scope.log_user = data;
+		console.log("data about logged user", $scope.log_user)
+		if($scope.log_user == "loggedout_user"){
+			$location.path('/index');
+		}
 	});
 	questionFactory.index(function(data){
 		$scope.questions = data;
 	});
-	$scope.logout = function(data){
+
+	$scope.logout = function(){
 		userFactory.logout(function(){
 			console.log("cleared log_user and redirecting to /index");
-			$scope.log_user = data;
+			$scope.log_user = "logeedout_user";
+			console.log("$scope.log_user = ", $scope.log_user)
 			$location.path('/index');
 		});
 	};
@@ -69,12 +75,17 @@ app.controller('NewQuestionController', ['$scope', 'userFactory', 'questionFacto
 	$scope.errors = '';
 	userFactory.getUser(function(data){
 		$scope.log_user = data;
+		console.log("data about logged user", $scope.log_user)
+		if($scope.log_user == "loggedout_user"){
+			$location.path('/index');
+		}
 	});
 
-	$scope.logout = function(data){
+	$scope.logout = function(){
 		userFactory.logout(function(){
 			console.log("cleared log_user and redirecting to /index");
-			$scope.log_user = data;
+			$scope.log_user = "logeedout_user";
+			console.log("$scope.log_user = ", $scope.log_user)
 			$location.path('/index');
 		});
 	};
@@ -98,15 +109,20 @@ app.controller('ShowQuestionController', ['$scope', 'userFactory', 'questionFact
 	$scope.question = {};
 	userFactory.getUser(function(data){
 		$scope.log_user = data;
+		console.log("data about logged user", $scope.log_user)
+		if($scope.log_user == "loggedout_user"){
+			$location.path('/index');
+		}
 	});
 	questionFactory.show($routeParams.id, function(data){
 		console.log("data from show ", data);
 		$scope.question = data;
 	});
-	$scope.logout = function(data){
+	$scope.logout = function(){
 		userFactory.logout(function(){
 			console.log("cleared log_user and redirecting to /index");
-			$scope.log_user = data;
+			$scope.log_user = "logeedout_user";
+			console.log("$scope.log_user = ", $scope.log_user)
 			$location.path('/index');
 		});
 	};
@@ -126,15 +142,20 @@ app.controller('NewAnswerController', ['$scope', 'userFactory', 'questionFactory
 	$scope.errors = '';
 	userFactory.getUser(function(data){
 		$scope.log_user = data;
+		console.log("data about logged user", $scope.log_user)
+		if($scope.log_user == "loggedout_user"){
+			$location.path('/index');
+		}
 	});
 	questionFactory.show($routeParams.id, function(data){
 		console.log("data from show ", data);
 		$scope.question = data;
 	});
-	$scope.logout = function(data){
+	$scope.logout = function(){
 		userFactory.logout(function(){
 			console.log("cleared log_user and redirecting to /index");
-			$scope.log_user = data;
+			$scope.log_user = "logeedout_user";
+			console.log("$scope.log_user = ", $scope.log_user)
 			$location.path('/index');
 		});
 	};
