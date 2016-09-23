@@ -1,0 +1,18 @@
+<!-- new_answer.html -->
+
+<h1>Hi {{log_user.name}}!</h1>
+<a href="#/">Home</a> | <a href="#/questions/{{question._id}}">Back to Question</a> | <span class="link" ng-click="logout();">logout</span>
+<h3>{{question.question}}</h3>
+<h5>{{question.description}}</h5>
+<form ng-submit="createAnswer(new_answer);">
+	<h4>{{errors}}</h4>
+	<label>Answer: <input type="text" ng-model="new_answer.answer" required ></label>
+	<label>Supporting detail for your answer (optional): <input type="text" ng-model="new_answer.details"></label>
+	<label><input type="hidden" ng-init="new_answer.user_name = log_user.name"></label>
+	<!-- <label><input type="hidden" ng-init="new_answer.question_id = question._id"></label> -->
+
+	<label><a href="#/"><button>Cancel</button></a></label>
+	<label><input type="submit" value="Submit"></label>
+</form>
+
+

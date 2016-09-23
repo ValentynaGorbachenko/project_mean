@@ -1,0 +1,29 @@
+<!-- questions.html -->
+<h1>Hi {{log_user.name}}!</h1><span class="link" ng-click="logout();">logout</span>
+<a class="link" href="#/new_question">Add new question</a>
+<div class="block">
+	<div ng-if="questions.length !== 0">
+		<input id="search" type="search" ng-model="q" placeholder="search..."> 
+		<!-- <small> * click on the table header to sort</small> -->
+		<table>
+			<thead>
+				<th>Question</th>
+				<th>Answer</th>
+				<th>Action</th>
+			</thead>
+			<tr ng-repeat="question in questions | orderBy: question._answers.length | filter: q as results track by $index">
+				<td ng-bind="question.question"></td>
+				<td ng-bind="question._answers.length"></td>
+				<td>
+					<a href="#/questions/{{question._id}}">Show</a>
+					<a href="#/questions/{{question._id}}/new_answer">Answer</a>
+				</td>
+			</tr>
+			<tr ng-if="results.length===0">
+				<td>No such results...</td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+</div>

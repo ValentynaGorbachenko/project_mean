@@ -1,0 +1,33 @@
+/*style.css*/
+/* regular wrappers */
+.wrapper{
+	width: 80%;
+	margin: 20px auto;
+}
+.block{
+	width: 100%;
+	margin: 20px auto;
+}
+/* tables rules */
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin: 0 auto;
+}
+th, td{
+	border-bottom: 1px solid #ddd;
+	padding: 10px 0px;
+	text-align: left;
+	width: 40%;
+}
+/* displaying errow up and down after the sorted field */
+.sortorder:after {
+  content: "\ffea";   // BLACK UP-POINTING TRIANGLE
+}
+.sortorder.reverse:after {
+  content: "\ffec";   // BLACK DOWN-POINTING TRIANGLE
+}
+span.link{
+	text-decoration: underline; 
+	color: blue;
+}

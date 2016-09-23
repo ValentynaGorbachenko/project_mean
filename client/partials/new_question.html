@@ -1,0 +1,12 @@
+<!-- new.html -->
+<h1>Hi {{log_user.name}}!</h1>
+<a href="#/">Home</a> | <span class="link" ng-click="logout();">logout</span>
+
+<h3>New Question</h3>
+<form ng-submit="createQuestion(new_question);">
+	<h4>{{errors}}</h4>
+	<label>Question: <input type="text" ng-model="new_question.question" required ></label>
+	<label>Description (optional): <input type="text" ng-model="new_question.description"></label>
+	<label><a href="#/"><button>Cancel</button></a></label>
+	<label><input type="submit" value="Submit"></label>
+</form>

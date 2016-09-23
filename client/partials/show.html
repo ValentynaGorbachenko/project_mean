@@ -1,0 +1,13 @@
+<!-- show.html -->
+<h1>Hi {{log_user.name}}!</h1>
+<a href="#/">Home</a> | <a href="#/questions/{{question._id}}/new_answer">Answer this Question</a> | <span class="link" ng-click="logout();">logout</span>
+<h3>{{question.question}}</h3>
+<h5>{{question.description}}</h5>
+<div ng-repeat = "answer in question._answers">
+	<h4>Name: {{answer.user_name}}</h4>
+	<h4>Answer: {{answer.answer}}</h4>
+	<h4>Details: {{answer.details}}</h4>
+	<h4>likes: {{answer.likes}} <button  ng-click="updateLikes(answer._id);">Like</button></h4>
+	<!-- <h4>id: {{answer._id}}</h4> -->
+</div>
+
